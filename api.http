@@ -1,0 +1,36 @@
+### Create category
+POST http://localhost:3000/categories
+Content-Type: application/json
+
+{
+  "name": "Infra"
+}
+
+### Create article
+POST http://localhost:3000/articles
+Content-Type: application/json
+
+{
+  "title": "Lorem Ipsum 2",
+  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "category": 1
+}
+
+### Get all articles
+GET http://localhost:3000/articles
+
+### Get article by ID
+GET http://localhost:3000/articles/20df6459-0f1b-4148-88d8-cc5ac9ecf676
+
+### Update article
+PATCH http://localhost:3000/articles/e12d9640-ea3e-428c-b406-82b198500164
+Content-Type: application/json
+
+{
+  "title": "Teste de update",
+  "content": "Updated content...",
+  "category": 1
+}
+
+### Delete article
+DELETE http://localhost:3000/articles/e12d9640-ea3e-428c-b406-82b198500164
