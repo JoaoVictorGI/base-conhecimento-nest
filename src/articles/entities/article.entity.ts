@@ -1,7 +1,7 @@
 import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
 import { Category } from '../../categories/entities/category.entity';
 
-@Entity()
+@Entity({ tableName: 'articles' })
 export class Article {
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   id: string;

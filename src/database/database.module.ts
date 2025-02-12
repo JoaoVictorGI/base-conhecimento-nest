@@ -17,7 +17,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         port: configService.get('POSTGRES_PORT'),
         driver: PostgreSqlDriver,
         autoLoadEntities: true,
-        entities: ['./dist/**/*.entity.js'],
+        // entities: ['./dist/**/*.entity.js'],
         // entitiesTs: ['./src/**/*.entity.ts'],
       }),
     }),

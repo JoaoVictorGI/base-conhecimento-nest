@@ -1,6 +1,6 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
-@Entity()
+@Entity({ tableName: 'categories' })
 export class Category {
   @PrimaryKey({ autoincrement: true })
   id!: number;

@@ -13,7 +13,7 @@ export class ArticlesService {
     @InjectRepository(Article)
     private readonly articleRepository: EntityRepository<Article>,
     private readonly em: EntityManager,
-  ) { }
+  ) {}
 
   async createArticle(articleData: CreateArticleDto) {
     const category = await this.em.findOne(Category, {
@@ -52,7 +52,7 @@ export class ArticlesService {
       throw new NotFoundException(`Article with id ${id} not found`);
     }
 
-    return article
+    return article;
   }
 
   async updateArticle(id: string, articleData: UpdateArticleDto) {
@@ -78,6 +78,6 @@ export class ArticlesService {
       throw new NotFoundException(`Article with id ${id} not found`);
     }
 
-    return this.em.removeAndFlush(article)
+    return this.em.removeAndFlush(article);
   }
 }
