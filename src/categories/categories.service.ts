@@ -13,7 +13,7 @@ export class CategoriesService {
     private readonly em: EntityManager,
   ) {}
 
-  async create(categoryData: CreateCategoryDto) {
+  async createArticle(categoryData: CreateCategoryDto) {
     const newCategory = this.categoryRepository.create(categoryData);
     await this.em.persistAndFlush(newCategory);
     return newCategory;

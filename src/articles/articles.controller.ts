@@ -24,17 +24,18 @@ export class ArticlesController {
   }
 
   @Get()
-  findAll() {
+  @UseGuards(JwtAuthenticationGuard)
+  getAllArticles() {
     return this.articlesService.getArticles();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  getById(@Param('id') id: string) {
     return this.articlesService.getArticleById(id);
   }
 
   @Patch(':id')
-  async update(
+  async updateArticle(
     @Param('id') id: string,
     @Body() updateArticleDto: UpdateArticleDto,
   ) {
@@ -42,7 +43,7 @@ export class ArticlesController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  removeArticle(@Param('id') id: string) {
     return this.articlesService.removeArticle(id);
   }
 }
