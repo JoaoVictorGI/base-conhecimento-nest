@@ -34,3 +34,8 @@ Content-Type: application/json
 
 ### Delete article
 DELETE http://localhost:3000/articles/e12d9640-ea3e-428c-b406-82b198500164
+
+### Search article
+GET http://localhost:3000/articles?q=palm
+Cookie: 
+Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmYTdkYmE0Zi02ODczLTQzNjEtODlhOS1jMDhiZGZlOGJkZmYiLCJpYXQiOjE3Mzk1NjkyNzcsImV4cCI6MTczOTU5ODA3N30.rAW8AgfRhYUROvxcHdVkQLwpDp0E_xmztIZ5dv4roug
