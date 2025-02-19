@@ -55,6 +55,38 @@ export class ArticlesService {
     return article;
   }
 
+  async getArticleByTitleContentOrCategory(q: string) {
+    const articles = await this.em
+      .createQueryBuilder(Article, 'a')
+      .leftJoinAndSelect('a.category', 'c')
+      .where({
+        $or: [
+          { title: { $ilike: `%${q}%` } },
+          { content: { $ilike: `%${q}%` } },
+          { 'c.name': { $ilike: `%${q}%` } },
+        ],
+      })
+      .getResult();
+
+    if (articles.length === 0) {
+      throw new NotFoundException(`No articles found matching "${q}"`);
+    }
+
+    return articles;
+  }
+
+  async getArticlesByCategory(category: number) {
+    const articles = await this.articleRepository.find({ category });
+
+    if (articles.length === 0) {
+      throw new NotFoundException(
+        `No articles found matching category ${category}`,
+      );
+    }
+
+    return articles;
+  }
+
   async updateArticle(id: string, articleData: UpdateArticleDto) {
     const article = await this.getArticleById(id);
 

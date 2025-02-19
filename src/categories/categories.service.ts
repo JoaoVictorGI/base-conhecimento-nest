@@ -1,7 +1,7 @@
 import { EntityRepository } from '@mikro-orm/core';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityManager } from '@mikro-orm/postgresql';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { Category } from './entities/category.entity';
 
@@ -17,5 +17,15 @@ export class CategoriesService {
     const newCategory = this.categoryRepository.create(categoryData);
     await this.em.persistAndFlush(newCategory);
     return newCategory;
+  }
+
+  async getCategories() {
+    const categories = await this.categoryRepository.findAll();
+
+    if (categories.length === 0) {
+      throw new NotFoundException('No categories found');
+    }
+
+    return categories;
   }
 }

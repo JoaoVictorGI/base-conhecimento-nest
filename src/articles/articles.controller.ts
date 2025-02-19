@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import JwtAuthenticationGuard from 'src/authentication/jwt-authentication.guard';
@@ -29,12 +30,26 @@ export class ArticlesController {
     return this.articlesService.getArticles();
   }
 
+  @Get('search')
+  @UseGuards(JwtAuthenticationGuard)
+  getByTitleContentOrCategory(@Query('q') q: string) {
+    return this.articlesService.getArticleByTitleContentOrCategory(q);
+  }
+
+  @Get('category/:categoryId')
+  @UseGuards(JwtAuthenticationGuard)
+  getArticleByCategory(@Param('categoryId') categoryId: number) {
+    return this.articlesService.getArticlesByCategory(categoryId);
+  }
+
   @Get(':id')
+  @UseGuards(JwtAuthenticationGuard)
   getById(@Param('id') id: string) {
     return this.articlesService.getArticleById(id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthenticationGuard)
   async updateArticle(
     @Param('id') id: string,
     @Body() updateArticleDto: UpdateArticleDto,
@@ -43,6 +58,7 @@ export class ArticlesController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthenticationGuard)
   removeArticle(@Param('id') id: string) {
     return this.articlesService.removeArticle(id);
   }
