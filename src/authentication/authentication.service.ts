@@ -13,7 +13,7 @@ export class AuthenticationService {
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   async register(registrationData: RegisterDto) {
     const hashedPassword = await bcrypt.hash(registrationData.password, 10);
@@ -81,7 +81,7 @@ export class AuthenticationService {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
 
-    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}`;
+    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}; Partitioned`;
   }
 
   public getCookieForLogOut() {
