@@ -81,7 +81,7 @@ export class AuthenticationService {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
 
-    return `Authentication=${token}; HttpOnly; Path=/; Domain='base-conhecimento-client.vercel.app'; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}; SameSite=None; Secure`;
+    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get('JWT_EXPIRATION_TIME')}; SameSite=None; Secure`;
   }
 
   public getCookieForLogOut() {
