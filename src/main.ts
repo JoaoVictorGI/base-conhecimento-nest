@@ -9,6 +9,7 @@ async function bootstrap() {
   app.enableCors({
     origin: 'https://base-conhecimento-api.onrender.com',
     credentials: true,
+    exposedHeaders: ['Set-Cookie'],
   });
 
   const config = new DocumentBuilder()
