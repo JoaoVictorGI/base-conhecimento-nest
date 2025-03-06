@@ -17,11 +17,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         port: configService.get('POSTGRES_PORT'),
         driver: PostgreSqlDriver,
         autoLoadEntities: true,
-        driverOptions: {
-          connection: {
-            ssl: { rejectUnauthorized: false },
-          }
-        }
+        // driverOptions: {
+        //   connection: {
+        //     ssl: { rejectUnauthorized: false },
+        //   }
+        // }
         // entities: ['./dist/**/*.entity.js'],
         // entitiesTs: ['./src/**/*.entity.ts'],
       }),

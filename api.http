@@ -1,19 +1,58 @@
+### Authentication
+
+### Register User
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "usuario@exemplo.com",
+  "password": "senha",
+  "role": "USER"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "usuario@exemplo.com",
+  "password": "senha"
+}
+
+### Users
+
+### Get all users (requires authentication)
+GET http://localhost:3000/users
+Authorization: Bearer {{authToken}}
+
+### Categories
+
 ### Create category
 POST http://localhost:3000/categories
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
   "name": "Infra"
 }
 
+### Get all categories
+GET http://localhost:3000/categories
+
+### Get category by ID
+GET http://localhost:3000/categories/1
+
+### Articles
+
 ### Create article
 POST http://localhost:3000/articles
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
   "title": "Lorem Ipsum 2",
   "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "category": 1
+  "categoryId": 1
 }
 
 ### Get all articles
@@ -25,17 +64,21 @@ GET http://localhost:3000/articles/20df6459-0f1b-4148-88d8-cc5ac9ecf676
 ### Update article
 PATCH http://localhost:3000/articles/e12d9640-ea3e-428c-b406-82b198500164
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
   "title": "Teste de update",
   "content": "Updated content...",
-  "category": 1
+  "categoryId": 1
 }
 
 ### Delete article
 DELETE http://localhost:3000/articles/e12d9640-ea3e-428c-b406-82b198500164
+Authorization: Bearer {{authToken}}
 
 ### Search article
 GET http://localhost:3000/articles?q=palm
-Cookie: 
-Authentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmYTdkYmE0Zi02ODczLTQzNjEtODlhOS1jMDhiZGZlOGJkZmYiLCJpYXQiOjE3Mzk1NjkyNzcsImV4cCI6MTczOTU5ODA3N30.rAW8AgfRhYUROvxcHdVkQLwpDp0E_xmztIZ5dv4roug
+Authorization: Bearer {{authToken}}
+
+### Variables
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmYTdkYmE0Zi02ODczLTQzNjEtODlhOS1jMDhiZGZlOGJkZmYiLCJpYXQiOjE3Mzk1NjkyNzcsImV4cCI6MTczOTU5ODA3N30.rAW8AgfRhYUROvxcHdVkQLwpDp0E_xmztIZ5dv4roug

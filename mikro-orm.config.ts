@@ -8,11 +8,11 @@ const mikroOrmConfig: Options = {
   host: process.env.POSTGRES_HOST,
   port: Number(process.env.POSTGRES_PORT),
   driver: PostgreSqlDriver,
-  driverOptions: {
-    connection: {
-      ssl: { rejectUnauthorized: false }
-    },
-  },
+  // driverOptions: {
+  //   connection: {
+  //     ssl: { rejectUnauthorized: false }
+  //   },
+  // },
   entities: ['./dist/**/*.entity.js'],
   entitiesTs: ['./src/**/*.entity.ts'],
 };

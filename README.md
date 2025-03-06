@@ -1,99 +1,141 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Base Conhecimento API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<div align="center">
+  <h3 align="center">API de Base de Conhecimento</h3>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <p align="center">
+    Uma API REST em NestJS para gerenciar uma base de conhecimento com artigos e autenticação de usuários
+    <br />
+  </p>
+</div>
 
-## Description
+## Sobre o Projeto
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Base Conhecimento é uma API RESTful construída com NestJS que fornece:
 
-## Project setup
+* Autenticação e autorização de usuários com JWT
+* Gerenciamento de artigos com categorias
+* Controle de acesso baseado em funções (papéis de ADMIN e USER)
 
-```bash
-$ pnpm install
-```
+O projeto segue práticas modernas de desenvolvimento e utiliza o NestJS Guards para uma robusta autenticação.
 
-## Compile and run the project
+### Construído Com
 
-```bash
-# development
-$ pnpm run start
+* [![NestJS][NestJS]][NestJS-url]
+* [![TypeScript][TypeScript]][TypeScript-url]
+* [![pnpm][pnpm]][pnpm-url]
+* [![PostgreSQL][PostgreSQL]][PostgreSQL-url]
+* [![JWT][JWT]][JWT-url]
+* [![Docker][Docker]][Docker-url]
 
-# watch mode
-$ pnpm run start:dev
+## Começando
 
-# production mode
-$ pnpm run start:prod
-```
+Siga estas etapas para executar a API em seu ambiente local.
 
-## Run tests
+### Pré-requisitos
 
-```bash
-# unit tests
-$ pnpm run test
+* Node.js 16+
+* pnpm
+* Docker e Docker Compose (para o banco de dados PostgreSQL)
 
-# e2e tests
-$ pnpm run test:e2e
+### Instalação
 
-# test coverage
-$ pnpm run test:cov
-```
+1. Clone o repositório
+   ```sh
+   git clone https://github.com/seuusuario/base-conhecimento-nest.git
+   ```
 
-## Deployment
+2. Inicie o banco de dados PostgreSQL com Docker Compose
+   ```sh
+   docker-compose up -d
+   ```
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+3. Instale as dependências com pnpm
+   ```sh
+   pnpm install
+   ```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+4. Execute a aplicação
+   ```sh
+   pnpm run start:dev
+   ```
+   
+5. A API estará disponível em:
+   ```
+   http://localhost:3000
+   ```
 
-```bash
-$ pnpm install -g mau
-$ mau deploy
-```
+## Documentação da API
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Endpoints de Autenticação
 
-## Resources
+* **Registrar Usuário**: `POST /auth/register`
+  ```json
+  {
+    "email": "usuario@exemplo.com",
+    "password": "senha",
+    "role": "USER"
+  }
+  ```
 
-Check out a few resources that may come in handy when working with NestJS:
+* **Login**: `POST /auth/login`
+  ```json
+  {
+    "email": "usuario@exemplo.com",
+    "password": "senha"
+  }
+  ```
+  Retorna um token JWT para usar em requisições autenticadas
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Endpoints de Usuários
 
-## Support
+* **Obter Todos os Usuários**: `GET /users` (requer autenticação)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Endpoints de Artigos
 
-## Stay in touch
+* **Obter Todos os Artigos**: `GET /articles` (requer autenticação)
+* **Criar Artigo**: `POST /articles` (requer papel de USER)
+  ```json
+  {
+    "title": "Título do Artigo",
+    "content": "Conteúdo do artigo vai aqui",
+    "categoryId": 1
+  }
+  ```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Recursos de Segurança
 
-## License
+A API implementa:
+- Autenticação baseada em JWT
+- Criptografia de senha usando Bcrypt
+- Autorização baseada em papéis (ADMIN e USER)
+- Gerenciamento de sessão stateless
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Esquema do Banco de Dados
+
+A aplicação usa PostgreSQL com as seguintes entidades principais:
+- `users`: Armazena credenciais e papéis de usuário
+- `articles`: Armazena artigos da base de conhecimento
+- `categories`: Armazena categorias de artigos
+
+## Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
+
+## Licença
+
+Este projeto é open source e está disponível sob a Licença MIT.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[NestJS]: https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white
+[NestJS-url]: https://nestjs.com/
+[TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
+[pnpm]: https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white
+[pnpm-url]: https://pnpm.io/
+[PostgreSQL]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
+[JWT]: https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white
+[JWT-url]: https://jwt.io/
+[Docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://www.docker.com/
